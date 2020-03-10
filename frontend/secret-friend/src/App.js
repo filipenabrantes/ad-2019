@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.css'
+import api from './services/api'
 
 import Header from './components/Header';
 
