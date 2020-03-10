@@ -1,14 +1,15 @@
 import { Router } from 'express';
+import UserController from './controllers/UserController';
 
 const routes = Router();
 
-routes.get('/friends', (req, res) => {
-    return res.send('retornando todos os amigos');
-});
-
-routes.post('/friends/new', (req, res) => {
-    return
+routes.get('/', (req, res) => {
+    res.send('teste')
 });
 
 
+routes.get('/friends', UserController.show);
+routes.post('/friends/new', UserController.store);
+// routes.put('/friends/new', UserController.store);
+// routes.delete('/friends/dele', UserController.store);
 export default routes;
