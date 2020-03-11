@@ -8,35 +8,37 @@
 </head>
 
 <body>
-  <table class="table table-striped table-responsive">
-    <thead>
-      <tr>
-        <th scope="col">Nome</th>
-        <th scope="col">E-mail</th>
-        <th scope="col">Amigo</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table>
+
+  <div class="table-box">
+
+    <button type="button" class="btn btn-success">Novo Amigo</button>
+
+    <table class="table table-striped table-responsive">
+      <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col" class="text-center">E-mail</th>
+          <th scope="col" class="text-right">Amigo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let friend of friends">
+          <td>{{ friend?.name }}</td>
+          <td class="text-center">{{ friend?.email }}</td>
+          <td class="text-right">{{ friend?.friend ? friend?.friend : "Aguardando sorteio"  }}</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <button type="button" class="btn btn-success" (click)="sortFriends()">Sortear amigo secreto</button>
+  </div>
+
+
+
+  <!-- Modal -->
+
+
 </body>
 
 </html>
