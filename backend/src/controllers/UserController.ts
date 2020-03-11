@@ -2,6 +2,30 @@ import { Request, Response } from 'express';
 import { User } from '../models/User';
 
 class UserController {
+
+    public async index(req: Request, res: Response) {
+
+        const users = await User.find().exec();
+
+        if (!users) {
+            console.log('erro ao consultar os usuários');
+            return;
+        }
+        res.json(users)
+    }
+
+    public async show(req: Request, res: Response) {
+
+        const { _id: id } = req.params
+        const userFound = await User.findById(id).exec();
+
+        if (!userFound) {
+            console.log('erro ao consultar os usuários');
+            return;
+        }
+        res.json(userFound)
+    }
+
     public async store(req: Request, res: Response) {
         const user = new User({
             name: req.body.name,
@@ -13,17 +37,6 @@ class UserController {
         } catch (error) {
             console.log('deu erro');
         }
-    }
-
-    public async show(req: Request, res: Response) {
-
-        const users = await User.find().exec();
-
-        if (!users) {
-            console.log('erro ao consultar os usuários');
-            return;
-        }
-        res.json(users)
     }
 
     public async update(req: Request, res: Response) {
