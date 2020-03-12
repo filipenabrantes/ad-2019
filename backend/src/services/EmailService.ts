@@ -8,6 +8,7 @@ class EmailService {
         public message?: string
     ) { }
 
+
     sendMail() {
         let mailOptions = {
             from: "filipenabrantes@gmail.com",
@@ -15,11 +16,14 @@ class EmailService {
             subject: 'Sorteio Amigo Secreto',
             html:
                 `
-                <div>
-                    <h3>Seu amigo secreto é:
-                     ${this.message} </h3>
-                </div> 
-            `
+             <style> 
+                msg {
+                    background-color: red
+                }
+             </style>
+                <h3 class="msg">Seu amigo secreto é: ${this.message} <h3>
+                `,
+            template: 'index'
         };
 
         const transporter = nodemailer.createTransport({
