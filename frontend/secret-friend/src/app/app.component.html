@@ -13,9 +13,13 @@
     <img class="img" src="../assets/loading.svg" alt="">
   </div>
 
+  <div *ngIf="!isLoading && friends?.length == 0" class="alert alert-info text-center" role="alert">
+    Nenhum amigo cadastrado!
+  </div>
+
   <div *ngIf="!isLoading" class="table-box">
 
-    <table class="table table-striped table-responsive">
+    <table *ngIf="friends?.length != 0" class="table table-striped table-responsive table-size">
       <thead>
         <tr>
           <th scope="col">Nome</th>
@@ -32,12 +36,16 @@
           <td><a (click)="loadDatatoEdit(friend, template, i); isEditing=true" class="fa fa-pencil text-info"></a></td>
           <td><a (click)="deleteFriend(friend, i)" class="fa fa-trash text-danger"></a></td>
         </tr>
-
       </tbody>
     </table>
 
-    <button type="button" class="btn btn-success" (click)="drawFriends()">Sortear amigo secreto</button>
-    <button type="button" class="btn btn-success" (click)="openModal(template)">Novo Amigo</button>
+    <button type="button" class="btn btn-success" (click)="openModal(template)">
+      <fa-icon [icon]="iconAdd"></fa-icon> Novo amigo
+    </button>
+
+    <button type="button" class="btn btn-info" (click)="drawFriends()">
+      <fa-icon [icon]="iconSort"></fa-icon> Sortear amigo secreto
+    </button>
 
     <!-- Modal confirmar exclusao -->
     <ng-template #confirm>

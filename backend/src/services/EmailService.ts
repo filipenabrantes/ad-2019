@@ -16,7 +16,9 @@ class EmailService {
             html:
                 `
                 <div>
-                <h1>teste de msg </h1> ${this.message}
+                    <h3>Seu amigo secreto é:
+                     ${this.message} </h3>
+                </div> 
             `
         };
 
