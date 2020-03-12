@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { User } from '../models/User';
+import { User, UserInterface } from '../models/User';
+import EmailService from '../services/EmailService';
+class DrawController {
 
-class SortController {
-
-    public async sortFriends(req: Request, res: Response) {
+    public drawFriends = async (req: Request, res: Response) => {
         const users = await User.find().exec()
 
         const arrayLength = users.length
@@ -17,15 +17,25 @@ class SortController {
             if (!arraySorteds.includes(numSorted)) {
                 if (users[numSorted].name != users[count].name) {
                     users[count].friend = users[numSorted].name
+                    await users[count].save()
+                    await this.sendMail(users[count])
                     arraySorteds.push(numSorted)
                     count++
                 }
             }
         }
-        console.log(users);
-
         res.json(users)
+    }
+
+    public async sendMail(user: UserInterface) {
+        console.log(`👠 ${user}`);
+
+        EmailService.to = user.email
+        EmailService.message = user.friend
+
+        await EmailService.sendMail()
+        return
     }
 }
 
-export default new SortController()
+export default new DrawController()

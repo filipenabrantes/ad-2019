@@ -1,18 +1,14 @@
 import { Router } from 'express';
 import UserController from './controllers/UserController';
-import SortController from './controllers/SortController';
+import DrawController from './controllers/DrawController';
+import EmailService from './services/EmailService';
 
 const routes = Router();
 
-routes.get('/', (req, res) => {
-    res.send('teste')
-});
-
-
-routes.get('/friends', UserController.index);
+routes.get('/', UserController.index);
 routes.get('/friends/:id', UserController.show);
 routes.post('/friends/new', UserController.store);
-routes.post('/friends/sort', SortController.sortFriends)
-// routes.put('/friends/new', UserController.store);
-// routes.delete('/friends/dele', UserController.store);
+routes.put('/friends/:id', UserController.update);
+routes.delete('/friends/:id', UserController.destroy);
+routes.post('/friends/draw', DrawController.drawFriends)
 export default routes;
