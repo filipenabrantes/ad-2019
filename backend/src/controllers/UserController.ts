@@ -33,7 +33,11 @@ class UserController {
         });
 
         try {
-            await user.save();
+            const newUser = await user.save();
+            res.send({
+                message: 'Participante cadastrado',
+                newUser
+            })
         } catch (error) {
             console.log('deu erro');
         }
@@ -41,17 +45,24 @@ class UserController {
 
     public async update(req: Request, res: Response) {
 
-        const { id, name, email } = req.body
-        await User.findByIdAndUpdate({ id }, { $set: { name, email } })
+        const _id = req.params.id
+        const { name, email } = req.body
+        console.log(req.body);
+
+        await User.findByIdAndUpdate({ _id }, { $set: { name, email } })
+        res.json('Atualizado')
     }
 
     public async destroy(req: Request, res: Response) {
-        const userFound = await User.findOne({ name: req.body.name });
+        const userFound = await User.findOne({ _id: req.params.id });
+        console.log(`🦋 ${userFound}`);
+
 
         if (!userFound) {
             console.log('usuario nao encontrado');
         }
-        await User.deleteOne({ userFound })
+        await User.deleteOne({ _id: userFound?._id })
+        res.json('Deletado com sucesso')
     }
 }
 
