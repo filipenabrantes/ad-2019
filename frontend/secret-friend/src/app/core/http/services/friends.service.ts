@@ -23,8 +23,18 @@ export class FriendsService extends BaseService {
     return this.http.post(SecretFriendApi.postNewFriend(), body, { headers: this.headers })
   }
 
-  sortFriends(): Observable<any> {
+  editFriends(id: string, body): Observable<any> {
     this.setHeader();
-    return this.http.post(SecretFriendApi.postSortFriend(), {}, { headers: this.headers })
+    return this.http.put(SecretFriendApi.putEditFriend(id), body, { headers: this.headers })
+  }
+
+  drawFriends(): Observable<any> {
+    this.setHeader();
+    return this.http.post(SecretFriendApi.postDrawFriend(), {}, { headers: this.headers })
+  }
+
+  deleteFriend(id: string): Observable<any> {
+    this.setHeader();
+    return this.http.delete(SecretFriendApi.deleteFriend(id), { headers: this.headers })
   }
 }
