@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FriendsService } from './core/http/services/friends.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import * as icons from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,8 @@ export class AppComponent implements OnInit {
   public friendForm
   public isLoading = false
   modalRef: BsModalRef;
+  iconAdd = icons.faPlusCircle
+  iconSort = icons.faRandom
 
   constructor(private friendsService: FriendsService, private modalService: BsModalService) { }
 
@@ -66,6 +69,7 @@ export class AppComponent implements OnInit {
         this.friends[this.friendTemp.index] = newFriendEdited
         this.friendTemp = {}
         this.closeModal()
+        this.isEditing = false
       }, (error) => {
         console.log(error);
       })
