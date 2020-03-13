@@ -1,2 +1,2 @@
-# ad-2019
+# Amigo Secreto Adireto
 Sorteio de amigo secreto
