@@ -2,6 +2,7 @@
 Sorteio de amigo secreto
 
 Backend: Typescript + NodeJS + MongoDB
+
 Frontend: Angular 9
 
 ---------------
