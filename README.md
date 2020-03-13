@@ -14,3 +14,18 @@ Rode o comando para instalar os pacotes
 
 Para iniciar o server
 `$ yarn dev`
+
+Acesse o link: localhost:3333
+-------------------
+
+para o frontend
+Entre na pasta frontend/secret-friend
+`$ cd frontend/secret-friend`
+
+Rode o comando para instalar os pacotes
+`$ yarn`
+
+Para iniciar o server
+`$ ng serve`
+
+Acesse o link: localhost:4200
